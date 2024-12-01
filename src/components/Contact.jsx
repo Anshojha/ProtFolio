@@ -14,10 +14,42 @@ const Contact = () => {
     message : ''
   });
 
+  // template_3qavghi
+  // service_blr2wbr
+  // H0XVAxZ5lLKabXLgc
+
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {}
-  const handleSubmit = (e) => {}
+  const handleChange = (e) => {
+    const {name , value} = e.target;
+    setForm({...form, [name] : value})
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    emailjs.send('service_blr2wbr',  'template_3qavghi', {
+      from_name : form.name,
+      to_name : 'Ansh',
+      from_email : form.name,
+      to_email : 'anshojha24@gmail.com',
+      message : form.message
+    }, 'H0XVAxZ5lLKabXLgc'
+  )
+  .then(()=> {
+    setLoading(false);
+    alert('Thank You, I will get back to you as soon as possible');
+    setForm({
+      name : '',
+      email : '',
+      message : ''
+    }, (error)=> {
+      setLoading(false);
+      console.log(error);
+      alert('Somthing went wrong!!')
+    })
+  })
+    
+  }
 
   return (
     <div className='xl:mt xl:flex-row flex-col-reverse flex gap-10 overflow-hidden'>
